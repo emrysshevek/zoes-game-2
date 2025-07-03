@@ -1,0 +1,125 @@
+[gd_scene load_steps=13 format=3 uid="uid://od18077blnbh"]
+
+[ext_resource type="Script" uid="uid://ew0b8pdt0b1d" path="res://main.gd" id="1_3inab"]
+[ext_resource type="PackedScene" uid="uid://giank48sh34g" path="res://ship.tscn" id="2_ye0aw"]
+[ext_resource type="PackedScene" uid="uid://bkukqgks77m8g" path="res://facility_object.tscn" id="3_8h12a"]
+[ext_resource type="PackedScene" uid="uid://bk46yj653qa6v" path="res://resource_object.tscn" id="4_0eym4"]
+[ext_resource type="PackedScene" uid="uid://b5xfs6k7xdg7y" path="res://draft_menu.tscn" id="4_4df5f"]
+[ext_resource type="PackedScene" uid="uid://d1efwaa4xp1ga" path="res://station_menu.tscn" id="5_aijp7"]
+[ext_resource type="PackedScene" uid="uid://c5wr1ganqpgum" path="res://pick_of_three_menu.tscn" id="6_xsmps"]
+[ext_resource type="PackedScene" uid="uid://c0wlwhil85484" path="res://payment_menu.tscn" id="7_hghgm"]
+[ext_resource type="Theme" uid="uid://dayrv6t24y1je" path="res://medium_text_size.tres" id="9_1lete"]
+[ext_resource type="Texture2D" uid="uid://27i4ypauymvo" path="res://sprites/menu.png" id="10_xgny8"]
+[ext_resource type="Theme" uid="uid://dp6mwislytgmr" path="res://Huge_text_size.tres" id="11_6msms"]
+[ext_resource type="Texture2D" uid="uid://qm0eigcae4lg" path="res://sprites/planet_temperate.png" id="12_1vmw6"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3inab")
+ship_scene = ExtResource("2_ye0aw")
+facility_object_scene = ExtResource("3_8h12a")
+resource_scene = ExtResource("4_0eym4")
+draft_menu = ExtResource("4_4df5f")
+pick_of_three_menu_scene = ExtResource("6_xsmps")
+payment_menu_scene = ExtResource("7_hghgm")
+
+[node name="StationMenu" parent="." instance=ExtResource("5_aijp7")]
+visible = false
+
+[node name="ViewStationBG" type="ColorRect" parent="."]
+visible = false
+offset_left = -37.0
+offset_top = -33.0
+offset_right = 1953.0
+offset_bottom = 1105.0
+color = Color(0.129412, 0.129412, 0.129412, 0.415686)
+
+[node name="ViewStationButton" type="Button" parent="."]
+visible = false
+top_level = true
+offset_left = 1756.0
+offset_top = 1009.0
+offset_right = 1871.0
+offset_bottom = 1040.0
+theme = ExtResource("9_1lete")
+text = "(View Station)"
+
+[node name="StartMenuOrganizer" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="StartMenuOrganizer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_xgny8")
+
+[node name="Label" type="Label" parent="StartMenuOrganizer"]
+offset_left = 691.0
+offset_top = 208.0
+offset_right = 1217.0
+offset_bottom = 291.0
+theme = ExtResource("11_6msms")
+text = "Black Hole Station"
+
+[node name="Button" type="Button" parent="StartMenuOrganizer"]
+offset_left = 760.0
+offset_top = 312.0
+offset_right = 1113.0
+offset_bottom = 520.0
+theme_override_font_sizes/font_size = 60
+text = "Start"
+icon = ExtResource("12_1vmw6")
+
+[node name="TutorialOrgNode" type="Node2D" parent="."]
+top_level = true
+position = Vector2(35, 720)
+
+[node name="Bkgd" type="ColorRect" parent="TutorialOrgNode"]
+offset_top = -59.0
+offset_right = 492.0
+offset_bottom = 344.0
+color = Color(0, 0, 0, 0.678431)
+
+[node name="Text" type="Label" parent="TutorialOrgNode"]
+offset_left = 7.0
+offset_top = -50.0
+offset_right = 489.0
+offset_bottom = 238.0
+theme = ExtResource("9_1lete")
+text = "Once per shift you will be required to pick new ships and/or facilities to add to your station.  To pick an item, left click and drag it down to your pick area-->, then let it go.
+"
+autowrap_mode = 3
+
+[node name="NextButton" type="Button" parent="TutorialOrgNode"]
+offset_left = 361.0
+offset_top = 266.0
+offset_right = 461.0
+offset_bottom = 329.0
+theme_override_font_sizes/font_size = 40
+text = "Next"
+
+[node name="SkipButton" type="Button" parent="TutorialOrgNode"]
+offset_left = 21.0
+offset_top = 263.0
+offset_right = 110.0
+offset_bottom = 326.0
+theme_override_font_sizes/font_size = 40
+text = "Skip"
+
+[node name="VictoryScreenOrganizer" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VictoryScreenOrganizer"]
+offset_right = 1917.0
+offset_bottom = 1075.0
+color = Color(0.401238, 0.752946, 0.778977, 1)
+
+[node name="Label" type="Label" parent="VictoryScreenOrganizer"]
+offset_left = 881.0
+offset_top = 458.0
+offset_right = 1135.0
+offset_bottom = 541.0
+theme = ExtResource("11_6msms")
+text = "You Win!"
+
+[connection signal="pressed" from="ViewStationButton" to="." method="_on_view_station_button_pressed"]
+[connection signal="pressed" from="StartMenuOrganizer/Button" to="." method="_on__start_button_pressed"]
+[connection signal="pressed" from="TutorialOrgNode/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="TutorialOrgNode/SkipButton" to="." method="_on_skip_button_pressed"]

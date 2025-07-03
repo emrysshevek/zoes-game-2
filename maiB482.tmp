@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://od18077blnbh"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_3inab"]
+[ext_resource type="PackedScene" uid="uid://giank48sh34g" path="res://ship.tscn" id="2_ye0aw"]
+[ext_resource type="PackedScene" uid="uid://bkukqgks77m8g" path="res://facility_object.tscn" id="3_8h12a"]
+[ext_resource type="PackedScene" uid="uid://b5xfs6k7xdg7y" path="res://draft_menu.tscn" id="4_4df5f"]
+[ext_resource type="PackedScene" uid="uid://d1efwaa4xp1ga" path="res://station_menu.tscn" id="5_aijp7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3inab")
+ship_scene = ExtResource("2_ye0aw")
+facility_object_scene = ExtResource("3_8h12a")
+draft_menu = ExtResource("4_4df5f")
+
+[node name="StationMenu" parent="." instance=ExtResource("5_aijp7")]

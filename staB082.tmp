@@ -1,0 +1,214 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1efwaa4xp1ga"]
+
+[ext_resource type="Script" path="res://station_menu.gd" id="1_qoybd"]
+[ext_resource type="PackedScene" uid="uid://giank48sh34g" path="res://ship.tscn" id="2_emm4k"]
+[ext_resource type="PackedScene" uid="uid://bwf6gyjsnbg5q" path="res://placement_area.tscn" id="2_v5t7v"]
+[ext_resource type="PackedScene" uid="uid://bkukqgks77m8g" path="res://facility_object.tscn" id="3_i7gxm"]
+[ext_resource type="PackedScene" uid="uid://bk46yj653qa6v" path="res://resource_object.tscn" id="4_ipifg"]
+[ext_resource type="Texture2D" uid="uid://056a7lgtpeke" path="res://icon.svg" id="4_l3p0l"]
+[ext_resource type="PackedScene" uid="uid://b2wgd82qobihf" path="res://drag_interact_area.tscn" id="5_q3qj5"]
+[ext_resource type="PackedScene" uid="uid://b27aag6xyw5mp" path="res://object_info_panel.tscn" id="6_y7rlo"]
+[ext_resource type="Texture2D" uid="uid://dnnukhq8a11wh" path="res://sprites/spacestation_menu_bkgd.png" id="8_kq35u"]
+[ext_resource type="Theme" uid="uid://bg1bc34kr6apu" path="res://InfoPanelTheme.tres" id="9_wa67f"]
+[ext_resource type="Theme" uid="uid://dp6mwislytgmr" path="res://Huge_text_size.tres" id="11_503t5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv7nw"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rxe0"]
+size = Vector2(263.25, 465.75)
+
+[node name="StationMenu" type="Node2D"]
+position = Vector2(157, 7)
+script = ExtResource("1_qoybd")
+ship_scene = ExtResource("2_emm4k")
+facility_object_scene = ExtResource("3_i7gxm")
+resource_scene = ExtResource("4_ipifg")
+drag_interact_scene = ExtResource("5_q3qj5")
+card_info_panel = ExtResource("6_y7rlo")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(803, 533)
+texture = ExtResource("8_kq35u")
+
+[node name="FacilityArea" parent="." instance=ExtResource("2_v5t7v")]
+position = Vector2(0, 16)
+
+[node name="AutoSellArea" parent="." instance=ExtResource("2_v5t7v")]
+
+[node name="DockedArea" parent="." instance=ExtResource("2_v5t7v")]
+
+[node name="WaitingArea" parent="." instance=ExtResource("2_v5t7v")]
+
+[node name="EndPhaseButton" type="Button" parent="."]
+offset_left = 1518.0
+offset_top = 782.0
+offset_right = 1683.0
+offset_bottom = 842.0
+text = "End Planning Phase"
+
+[node name="TestingMoneyLabel" type="Label" parent="."]
+offset_left = 1501.0
+offset_top = 469.0
+offset_right = 1667.0
+offset_bottom = 544.0
+theme_override_font_sizes/font_size = 32
+text = "$"
+
+[node name="TestingScienceLabel" type="Label" parent="."]
+offset_left = 1501.0
+offset_top = 520.0
+offset_right = 1667.0
+offset_bottom = 595.0
+theme_override_font_sizes/font_size = 32
+
+[node name="TimeLabel" type="Label" parent="."]
+offset_left = 1472.0
+offset_top = 35.0
+offset_right = 1626.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 30
+text = "TEST"
+
+[node name="GuildPayLabel" type="Label" parent="."]
+offset_left = 1467.0
+offset_top = 91.0
+offset_right = 1694.0
+offset_bottom = 239.0
+theme_override_font_sizes/font_size = 30
+text = "TEST"
+autowrap_mode = 2
+
+[node name="PlacementGhost" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.368627)
+texture = ExtResource("4_l3p0l")
+centered = false
+
+[node name="SpawnShipButton" type="Button" parent="."]
+visible = false
+offset_left = 1488.0
+offset_top = 260.0
+offset_right = 1650.0
+offset_bottom = 291.0
+text = "Spawn random ship"
+
+[node name="SpawnFacilityButton" type="Button" parent="."]
+visible = false
+offset_left = 1499.0
+offset_top = 424.0
+offset_right = 1680.0
+offset_bottom = 455.0
+text = "Spawn random facility"
+
+[node name="ForceDepartArea" type="Area2D" parent="."]
+visible = false
+position = Vector2(936, 0)
+
+[node name="ColorRect" type="ColorRect" parent="ForceDepartArea"]
+offset_left = -67.0
+offset_top = -63.0
+offset_right = 64.0
+offset_bottom = 65.0
+color = Color(0, 0.531101, 0.527969, 1)
+
+[node name="ForceDepartCollision" type="CollisionShape2D" parent="ForceDepartArea"]
+shape = SubResource("RectangleShape2D_dv7nw")
+
+[node name="ForceDepartText" type="Label" parent="ForceDepartArea"]
+offset_left = -69.0
+offset_top = -93.0
+offset_right = 69.0
+offset_bottom = -70.0
+text = "Force Depart Ship"
+
+[node name="SellArea" type="Area2D" parent="."]
+visible = false
+position = Vector2(1412, 581)
+
+[node name="ColorRect" type="ColorRect" parent="SellArea"]
+offset_right = 264.0
+offset_bottom = 465.0
+color = Color(0.526072, 0.466088, 0, 1)
+
+[node name="SellAreaCollision" type="CollisionShape2D" parent="SellArea"]
+position = Vector2(133.375, 232)
+shape = SubResource("RectangleShape2D_8rxe0")
+
+[node name="SellAreaText" type="Label" parent="SellArea"]
+offset_left = 95.0
+offset_top = 1.0
+offset_right = 161.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 30
+text = "SELL"
+
+[node name="DirectLinkPlanetContainer" type="VBoxContainer" parent="."]
+offset_left = -48.0
+offset_top = 32.0
+offset_right = 91.0
+offset_bottom = 151.0
+
+[node name="DirectLinkPlanetButton" type="Button" parent="DirectLinkPlanetContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="DirectLinkPlanetLabel" type="Label" parent="DirectLinkPlanetContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Direct-Link Planet"
+
+[node name="NextPlanetChangeLabel" type="Label" parent="DirectLinkPlanetContainer"]
+visible = false
+layout_mode = 2
+text = "Portal shift in: %X%"
+
+[node name="GeneratePortalTelemetryButton" type="Button" parent="DirectLinkPlanetContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Generate Portal Telemetry (Use 20 Science)"
+autowrap_mode = 2
+
+[node name="DirectLinkPlanetCard" type="PanelContainer" parent="."]
+visible = false
+offset_left = -70.0
+offset_top = 4.0
+offset_right = 129.0
+offset_bottom = 282.0
+theme = ExtResource("9_wa67f")
+
+[node name="OptionContainer" type="VBoxContainer" parent="DirectLinkPlanetCard"]
+layout_mode = 2
+
+[node name="Optionlabel" type="Label" parent="DirectLinkPlanetCard/OptionContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme = ExtResource("11_503t5")
+theme_override_font_sizes/font_size = 30
+text = "Option #1"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="SpriteBackground" type="ColorRect" parent="DirectLinkPlanetCard/OptionContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[node name="PlanetSprite" type="Sprite2D" parent="DirectLinkPlanetCard/OptionContainer"]
+
+[node name="OptionDescription" type="Label" parent="DirectLinkPlanetCard/OptionContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Option #1 description"
+autowrap_mode = 3
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="pressed" from="EndPhaseButton" to="." method="_on_end_phase_button_pressed"]
+[connection signal="pressed" from="SpawnShipButton" to="." method="_on_spawn_ship_button_pressed"]
+[connection signal="pressed" from="SpawnFacilityButton" to="." method="_on_spawn_facility_button_pressed"]
+[connection signal="pressed" from="DirectLinkPlanetContainer/DirectLinkPlanetButton" to="." method="_on_direct_link_planet_button_pressed"]
+[connection signal="pressed" from="DirectLinkPlanetContainer/GeneratePortalTelemetryButton" to="." method="_on_generate_portal_telemetry_button_pressed"]
+[connection signal="gui_input" from="DirectLinkPlanetCard" to="." method="_on_direct_link_planet_card_gui_input"]

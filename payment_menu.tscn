@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0wlwhil85484"]
+
+[ext_resource type="Script" path="res://payment_menu.gd" id="1_5bb4t"]
+[ext_resource type="Theme" uid="uid://dp6mwislytgmr" path="res://Huge_text_size.tres" id="2_k3cyf"]
+
+[node name="PaymentMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5bb4t")
+
+[node name="PaymentLabel" type="Label" parent="."]
+layout_mode = 1
+offset_left = 655.0
+offset_top = 291.0
+offset_right = 1253.0
+offset_bottom = 374.0
+theme = ExtResource("2_k3cyf")
+text = "Payment Due: 00GCr"
+
+[node name="YourCreditsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 676.0
+offset_top = 394.0
+offset_right = 1241.0
+offset_bottom = 477.0
+theme = ExtResource("2_k3cyf")
+text = "Your Credits: 00GCr"
+
+[node name="ResultLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 525.0
+offset_right = 1218.0
+offset_bottom = 608.0
+theme = ExtResource("2_k3cyf")
+text = "Result:"
+
+[node name="PayButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 832.0
+offset_top = 715.0
+offset_right = 1076.0
+offset_bottom = 806.0
+theme_override_font_sizes/font_size = 60
+text = "Proceed"
+
+[node name="GameOverButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 782.0
+offset_top = 715.0
+offset_right = 1116.0
+offset_bottom = 806.0
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+
+[connection signal="pressed" from="PayButton" to="." method="_on_pay_button_pressed"]
+[connection signal="pressed" from="GameOverButton" to="." method="_on_game_over_button_pressed"]

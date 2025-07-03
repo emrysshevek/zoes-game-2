@@ -1,0 +1,17 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dq6nnp7y11stk"]
+
+[ext_resource type="Texture2D" uid="uid://mcavvyxm8hvu" path="res://sprites/panel_outline.png" id="1_xa33l"]
+
+[resource]
+texture = ExtResource("1_xa33l")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 128, 128)

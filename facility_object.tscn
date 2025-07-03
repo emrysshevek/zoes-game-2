@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkukqgks77m8g"]
+
+[ext_resource type="Script" uid="uid://bhjxs7i16j8lm" path="res://facility_object.gd" id="1_qq4rp"]
+[ext_resource type="PackedScene" uid="uid://b27aag6xyw5mp" path="res://object_info_panel.tscn" id="2_2ls37"]
+[ext_resource type="Texture2D" uid="uid://b45mfgaxwav7n" path="res://sprites/practiceship1.png" id="2_ng0ao"]
+[ext_resource type="Texture2D" uid="uid://il1ytllderln" path="res://sprites/upgradeicon.png" id="4_wqlgk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cj8xy"]
+size = Vector2(129, 127)
+
+[node name="FacilityObject" type="Node2D"]
+script = ExtResource("1_qq4rp")
+
+[node name="FacilityObjectSprite" type="Sprite2D" parent="."]
+modulate = Color(0.801677, 0.876248, 0.900151, 0.823529)
+position = Vector2(0, 2)
+texture = ExtResource("2_ng0ao")
+centered = false
+
+[node name="Button" type="Button" parent="FacilityObjectSprite"]
+offset_top = -1.0
+offset_right = 130.0
+offset_bottom = 125.0
+button_mask = 3
+
+[node name="FacilityObjectCollisionArea" type="Area2D" parent="FacilityObjectSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FacilityObjectSprite/FacilityObjectCollisionArea"]
+position = Vector2(64, 63)
+shape = SubResource("RectangleShape2D_cj8xy")
+
+[node name="InfoPanel" parent="." instance=ExtResource("2_2ls37")]
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1.0
+offset_bottom = 2.0
+
+[node name="UpgradeButton" type="Button" parent="."]
+visible = false
+offset_right = 107.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 12
+text = "Ready to upgrade"
+icon = ExtResource("4_wqlgk")
+autowrap_mode = 2
+
+[connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]

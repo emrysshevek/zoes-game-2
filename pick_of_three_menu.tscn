@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5wr1ganqpgum"]
+
+[ext_resource type="Theme" uid="uid://bg1bc34kr6apu" path="res://InfoPanelTheme.tres" id="1_rmeic"]
+[ext_resource type="Script" path="res://pick_of_three_menu.gd" id="2_mq4cq"]
+[ext_resource type="PackedScene" uid="uid://bkukqgks77m8g" path="res://facility_object.tscn" id="3_75g00"]
+[ext_resource type="Theme" uid="uid://dxfjghc2n00el" path="res://small_text_size.tres" id="3_xt2tr"]
+
+[node name="PickOfThreeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rmeic")
+script = ExtResource("2_mq4cq")
+facility_object_scene = ExtResource("3_75g00")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1859.0
+offset_bottom = 1024.0
+
+[node name="Background" type="ColorRect" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.152941, 0.152941, 0.152941, 0.819608)
+
+[node name="CardsContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Option1Panel" type="PanelContainer" parent="CenterContainer/CardsContainer"]
+visible = false
+layout_mode = 2
+
+[node name="OptionButton" type="Button" parent="CenterContainer/CardsContainer/Option1Panel"]
+self_modulate = Color(0, 0, 0, 0.258824)
+layout_mode = 2
+
+[node name="OptionContainer" type="VBoxContainer" parent="CenterContainer/CardsContainer/Option1Panel"]
+layout_mode = 2
+
+[node name="Optionlabel" type="Label" parent="CenterContainer/CardsContainer/Option1Panel/OptionContainer"]
+layout_mode = 2
+theme = ExtResource("3_xt2tr")
+theme_override_font_sizes/font_size = 30
+text = "Option #1"
+horizontal_alignment = 1
+
+[node name="SpriteBackground" type="ColorRect" parent="CenterContainer/CardsContainer/Option1Panel/OptionContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[node name="OptionDescription" type="Label" parent="CenterContainer/CardsContainer/Option1Panel/OptionContainer"]
+layout_mode = 2
+theme = ExtResource("3_xt2tr")
+theme_override_font_sizes/font_size = 20
+text = "Option #1 description"

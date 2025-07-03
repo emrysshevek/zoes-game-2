@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5xfs6k7xdg7y"]
+
+[ext_resource type="PackedScene" uid="uid://bwf6gyjsnbg5q" path="res://placement_area.tscn" id="1_8fouo"]
+[ext_resource type="Script" uid="uid://b4oqi15sjwapp" path="res://draft_menu.gd" id="1_lh388"]
+[ext_resource type="PackedScene" uid="uid://giank48sh34g" path="res://ship.tscn" id="2_clab7"]
+[ext_resource type="PackedScene" uid="uid://bkukqgks77m8g" path="res://facility_object.tscn" id="3_6ed5k"]
+[ext_resource type="Texture2D" uid="uid://3x2je2n4ad8w" path="res://sprites/draft_menu_bkgd.png" id="5_a5wxj"]
+[ext_resource type="PackedScene" uid="uid://b27aag6xyw5mp" path="res://object_info_panel.tscn" id="5_hgkvg"]
+[ext_resource type="Theme" uid="uid://dp6mwislytgmr" path="res://Huge_text_size.tres" id="7_lmoro"]
+[ext_resource type="Theme" uid="uid://dayrv6t24y1je" path="res://medium_text_size.tres" id="7_otndv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq1to"]
+size = Vector2(1200, 320)
+
+[node name="draft_menu" type="Node2D"]
+script = ExtResource("1_lh388")
+ship_scene = ExtResource("2_clab7")
+facility_object_scene = ExtResource("3_6ed5k")
+placement_area_scene = ExtResource("1_8fouo")
+card_info_panel = ExtResource("5_hgkvg")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("5_a5wxj")
+
+[node name="DraftPackArea1" parent="." instance=ExtResource("1_8fouo")]
+
+[node name="DraftPackArea2" parent="." instance=ExtResource("1_8fouo")]
+
+[node name="DraftPackArea3" parent="." instance=ExtResource("1_8fouo")]
+
+[node name="DraftPackArea4" parent="." instance=ExtResource("1_8fouo")]
+
+[node name="PlayerCardArea" parent="." instance=ExtResource("1_8fouo")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 55.0
+offset_top = 384.0
+offset_right = 266.0
+offset_bottom = 426.0
+rotation = 1.5708
+theme = ExtResource("7_otndv")
+text = "Left Opponent"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 856.0
+offset_top = 7.9986
+offset_right = 1067.0
+offset_bottom = 49.9986
+theme = ExtResource("7_otndv")
+text = "Top Opponent"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1870.0
+offset_top = 639.0
+offset_right = 2099.0
+offset_bottom = 681.0
+rotation = 4.71239
+theme = ExtResource("7_otndv")
+text = "Right Opponent"
+
+[node name="OppLeftCardArea" parent="." instance=ExtResource("1_8fouo")]
+rotation = 1.5708
+
+[node name="OppTopCardArea" parent="." instance=ExtResource("1_8fouo")]
+
+[node name="OppRightCardArea" parent="." instance=ExtResource("1_8fouo")]
+rotation = 4.71239
+
+[node name="PlayerHandCollisionarea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHandCollisionarea"]
+shape = SubResource("RectangleShape2D_dq1to")
+
+[node name="ProceedPieces" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProceedOverlay" type="ColorRect" parent="ProceedPieces"]
+layout_mode = 0
+offset_right = 1044.0
+offset_bottom = 501.0
+color = Color(0.184314, 0.184314, 0.184314, 0.603922)
+
+[node name="ProceedButton" type="Button" parent="ProceedPieces"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 502.0
+offset_right = 954.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 60
+text = "Proceed"
+
+[node name="DraftTextLabel" type="Label" parent="."]
+visible = false
+offset_left = 615.0
+offset_top = 319.0
+offset_right = 1304.0
+offset_bottom = 644.0
+size_flags_horizontal = 4
+theme = ExtResource("7_lmoro")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="ProceedPieces/ProceedButton" to="." method="_on_proceed_button_pressed"]

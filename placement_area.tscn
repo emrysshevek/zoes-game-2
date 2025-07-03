@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwf6gyjsnbg5q"]
+
+[ext_resource type="Script" uid="uid://g02y8dj3lfyl" path="res://placement_area.gd" id="1_nvdfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urvur"]
+size = Vector2(1557, 762)
+
+[node name="PlacementArea2D" type="Area2D"]
+script = ExtResource("1_nvdfj")
+
+[node name="PlacementAreaCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_urvur")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.109804, 0.109804, 0.109804, 0.721569)

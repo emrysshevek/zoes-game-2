@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk46yj653qa6v"]
+
+[ext_resource type="Script" path="res://resource_object.gd" id="1_a2xop"]
+[ext_resource type="PackedScene" uid="uid://b27aag6xyw5mp" path="res://object_info_panel.tscn" id="2_ix3ly"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_showy"]
+size = Vector2(128, 128)
+
+[node name="ResourceObject" type="Node2D"]
+script = ExtResource("1_a2xop")
+
+[node name="ResourceObjectSprite" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+
+[node name="Button" type="Button" parent="ResourceObjectSprite"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 63.0
+offset_bottom = 65.0
+
+[node name="ResourceObjectArea" type="Area2D" parent="ResourceObjectSprite"]
+
+[node name="ResourceObjectCollisionShape" type="CollisionShape2D" parent="ResourceObjectSprite/ResourceObjectArea"]
+shape = SubResource("RectangleShape2D_showy")
+
+[node name="ObjectInfoPanel" parent="." instance=ExtResource("2_ix3ly")]

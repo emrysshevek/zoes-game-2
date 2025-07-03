@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://b27aag6xyw5mp"]
+
+[ext_resource type="Script" uid="uid://cete3wr2vfinp" path="res://object_info_panel.gd" id="1_ehdyh"]
+[ext_resource type="Theme" uid="uid://bg1bc34kr6apu" path="res://InfoPanelTheme.tres" id="1_g4orj"]
+[ext_resource type="Texture2D" uid="uid://il1ytllderln" path="res://sprites/upgradeicon.png" id="3_vt2bj"]
+
+[node name="ObjectInfoPanel" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_g4orj")
+script = ExtResource("1_ehdyh")
+
+[node name="Panel" type="PanelContainer" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 127.0
+offset_bottom = 170.0
+size_flags_vertical = 3
+
+[node name="InfoContainer" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/InfoContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Ship name"
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="Panel/InfoContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Tags" type="Label" parent="Panel/InfoContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Tags"
+autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="Panel/InfoContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Effects" type="Label" parent="Panel/InfoContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Arrive Effect"
+autowrap_mode = 3
+
+[node name="UpgradeButton" type="Button" parent="Panel/InfoContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Upgrade Menu"
+icon = ExtResource("3_vt2bj")
+flat = true
+autowrap_mode = 3
+
+[node name="UpgradeIconContainer" type="HBoxContainer" parent="Panel/InfoContainer"]
+layout_mode = 2
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 2
+
+[node name="UpgradeCost" type="Label" parent="Panel/UpgradeContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+text = "Upgrade Progress 0/2"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/UpgradeContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResourceUpgradeButton" type="Button" parent="Panel/UpgradeContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "2 Refined Metal"
+
+[node name="ORLabel" type="Label" parent="Panel/UpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "OR"
+
+[node name="ScienceUpgradeButton" type="Button" parent="Panel/UpgradeContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "10 Science"
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_panel_mouse_exited"]
+[connection signal="pressed" from="Panel/InfoContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="visibility_changed" from="Panel/UpgradeContainer" to="." method="_on_upgrade_container_visibility_changed"]
+[connection signal="pressed" from="Panel/UpgradeContainer/HBoxContainer/ResourceUpgradeButton" to="." method="_on_resource_upgrade_button_pressed"]
+[connection signal="pressed" from="Panel/UpgradeContainer/HBoxContainer/ScienceUpgradeButton" to="." method="_on_science_upgrade_button_pressed"]

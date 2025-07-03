@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2wgd82qobihf"]
+
+[ext_resource type="Script" uid="uid://baxfourg1vvxe" path="res://drag_interact_area.gd" id="1_bibbp"]
+[ext_resource type="Texture2D" uid="uid://2dhrti5l3f11" path="res://sprites/facility_interact_tile.png" id="2_fc5yw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs0o5"]
+size = Vector2(128, 128)
+
+[node name="DragInteractArea" type="Area2D"]
+script = ExtResource("1_bibbp")
+
+[node name="InteractAreaCollision" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
+shape = SubResource("RectangleShape2D_fs0o5")
+
+[node name="InteractAreaBG" type="TextureRect" parent="."]
+offset_right = 128.0
+offset_bottom = 129.0
+texture = ExtResource("2_fc5yw")
+stretch_mode = 1
+
+[node name="InteractAreaText" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 123.0
+offset_bottom = 125.0
+text = "SELL:"
+autowrap_mode = 3

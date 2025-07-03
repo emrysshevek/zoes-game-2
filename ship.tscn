@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://giank48sh34g"]
+
+[ext_resource type="Script" uid="uid://c77g75asrwxiy" path="res://ship.gd" id="1_1tq7b"]
+[ext_resource type="PackedScene" uid="uid://b27aag6xyw5mp" path="res://object_info_panel.tscn" id="2_cfjlg"]
+[ext_resource type="Texture2D" uid="uid://w2i5n5n40p8p" path="res://sprites/wireframetest.png" id="2_no3b3"]
+[ext_resource type="Theme" uid="uid://dhu2uaeo5cdus" path="res://pop_up_text_theme.tres" id="3_4b342"]
+[ext_resource type="Texture2D" uid="uid://il1ytllderln" path="res://sprites/upgradeicon.png" id="5_7kieu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqfd0"]
+size = Vector2(128, 128)
+
+[node name="Ship" type="Node2D"]
+position = Vector2(2, 0)
+script = ExtResource("1_1tq7b")
+
+[node name="ShipSprite" type="Sprite2D" parent="."]
+position = Vector2(64, 65)
+texture = ExtResource("2_no3b3")
+centered = false
+offset = Vector2(-64, -64)
+
+[node name="DockingStatusLabel" type="Label" parent="ShipSprite"]
+offset_left = 17.0
+offset_top = 48.0
+offset_right = 62.0
+offset_bottom = 62.0
+theme = ExtResource("3_4b342")
+theme_override_font_sizes/font_size = 10
+text = "Waiting"
+horizontal_alignment = 1
+
+[node name="ShipButton" type="Button" parent="ShipSprite"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -65.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 66.0
+button_mask = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ShipCollisionArea" type="Area2D" parent="ShipSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipSprite/ShipCollisionArea"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_nqfd0")
+
+[node name="ShipInfo" parent="." instance=ExtResource("2_cfjlg")]
+offset_left = -1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 2.0
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeButton" type="Button" parent="."]
+visible = false
+offset_right = 107.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 12
+text = "Ready to upgrade"
+icon = ExtResource("5_7kieu")
+autowrap_mode = 2
+
+[connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
